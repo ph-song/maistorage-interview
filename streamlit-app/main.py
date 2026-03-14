@@ -5,6 +5,8 @@ import time
 import json
 import logging
 
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 st.set_page_config(page_title="AI Chatbot", page_icon="🤖")

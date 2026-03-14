@@ -8,6 +8,7 @@ WORKDIR /app
 # Python 3.14 optimization: 
 # Pre-compiling bytecode is even more effective now.
 ENV UV_COMPILE_BYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
