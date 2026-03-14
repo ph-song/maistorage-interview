@@ -21,6 +21,8 @@ Create a `.env` file in `fastapi-app/` directory and configure the following var
 | `LANGUAGE_MODEL_TYPE` | The specific model version/type. | `gemini-2.5-flash` |
 | `SECRET_KEY` | Key used for security/session signing. | `supersecretkey` |
 
+
+
 **Example `.env` file:**
 ```bash
 # Required
@@ -30,3 +32,7 @@ LANGUAGE_MODEL_API_KEY=your_api_key_here
 LANGUAGE_MODEL_PROVIDER=google_genai
 LANGUAGE_MODEL_TYPE=gemini-2.5-flash
 SECRET_KEY=supersecretkey
+```
+
+Run the following command to build the images and start the services:
+`docker compose up --build`
