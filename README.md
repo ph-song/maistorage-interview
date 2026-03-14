@@ -12,7 +12,7 @@ Ensure you have the following installed on your local machine:
 * **Docker Compose**
 
 ### 1. Environment Configuration
-Create a `.env` file in the root directory and configure the following variables. 
+Create a `.env` file in `fastapi-app/` directory and configure the following variables. 
 
 | Variable | Description | Default |
 | :--- | :--- | :--- |
