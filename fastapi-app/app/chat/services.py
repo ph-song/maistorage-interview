@@ -9,6 +9,8 @@ from app.core.settings import settings
 from app.database.database import engine
 from app.chat.exceptions import AIChatException
 from app.core.logger import logger 
+from datetime import datetime
+import re
 
 # --- Configuration & Initialization ---
 # Initialize the chat model using init_chat_model
@@ -59,10 +61,22 @@ class ChatService:
             async for chunk in response_stream:
                 content = ChatService.get_chunk_text(chunk)
                 if content:
-                    yield content
+                    tokens = list(ChatService.yield_word_by_word(content))
+                    for token in tokens:
+                        yield token
         except Exception as e:
             logger.error(f"Error generating AI content: {e}", exc_info=True)
             raise AIChatException(str(e))
+        
+    @staticmethod
+    def yield_word_by_word(text):
+        # This splits by whitespace but KEEPS the whitespace in the list
+        # Example: "    def" -> ["    ", "def"]
+        tokens = re.split(r'(\s+)', text)
+        
+        for token in tokens:
+            if token:  # Skip empty strings
+                yield token
 
     @staticmethod
     def get_chunk_text(chunk: Any) -> str:
